@@ -1,0 +1,40 @@
+{
+  "pairs": {
+    "BTC_USD": {
+      "rate": 86823.0,
+      "updated_at": "2025-11-20T20:30:16.497244Z",
+      "source": "CoinGecko"
+    },
+    "ETH_USD": {
+      "rate": 2841.29,
+      "updated_at": "2025-11-20T20:30:16.497244Z",
+      "source": "CoinGecko"
+    },
+    "SOL_USD": {
+      "rate": 133.67,
+      "updated_at": "2025-11-20T20:30:16.497244Z",
+      "source": "CoinGecko"
+    },
+    "LTC_USD": {
+      "rate": 86.76,
+      "updated_at": "2025-11-20T20:30:16.497244Z",
+      "source": "CoinGecko"
+    },
+    "XRP_USD": {
+      "rate": 2.01,
+      "updated_at": "2025-11-20T20:30:16.497244Z",
+      "source": "CoinGecko"
+    },
+    "ADA_USD": {
+      "rate": 0.432856,
+      "updated_at": "2025-11-20T20:30:16.497244Z",
+      "source": "CoinGecko"
+    },
+    "DOT_USD": {
+      "rate": 2.54,
+      "updated_at": "2025-11-20T20:30:16.497244Z",
+      "source": "CoinGecko"
+    }
+  },
+  "last_refresh": "2025-11-20T20:30:16.497244Z"
+}

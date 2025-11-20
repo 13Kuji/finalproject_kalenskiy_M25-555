@@ -1,0 +1,88 @@
+{
+  "records": [
+    {
+      "id": "BTC_USD_2025-11-20T20:30:16.489245Z",
+      "from_currency": "BTC",
+      "to_currency": "USD",
+      "rate": 86823.0,
+      "timestamp": "2025-11-20T20:30:16.489245Z",
+      "source": "CoinGecko",
+      "meta": {
+        "request_ms": 384,
+        "status_code": 200
+      }
+    },
+    {
+      "id": "ETH_USD_2025-11-20T20:30:16.491144Z",
+      "from_currency": "ETH",
+      "to_currency": "USD",
+      "rate": 2841.29,
+      "timestamp": "2025-11-20T20:30:16.491144Z",
+      "source": "CoinGecko",
+      "meta": {
+        "request_ms": 384,
+        "status_code": 200
+      }
+    },
+    {
+      "id": "SOL_USD_2025-11-20T20:30:16.492391Z",
+      "from_currency": "SOL",
+      "to_currency": "USD",
+      "rate": 133.67,
+      "timestamp": "2025-11-20T20:30:16.492391Z",
+      "source": "CoinGecko",
+      "meta": {
+        "request_ms": 384,
+        "status_code": 200
+      }
+    },
+    {
+      "id": "LTC_USD_2025-11-20T20:30:16.493397Z",
+      "from_currency": "LTC",
+      "to_currency": "USD",
+      "rate": 86.76,
+      "timestamp": "2025-11-20T20:30:16.493397Z",
+      "source": "CoinGecko",
+      "meta": {
+        "request_ms": 384,
+        "status_code": 200
+      }
+    },
+    {
+      "id": "XRP_USD_2025-11-20T20:30:16.494742Z",
+      "from_currency": "XRP",
+      "to_currency": "USD",
+      "rate": 2.01,
+      "timestamp": "2025-11-20T20:30:16.494742Z",
+      "source": "CoinGecko",
+      "meta": {
+        "request_ms": 384,
+        "status_code": 200
+      }
+    },
+    {
+      "id": "ADA_USD_2025-11-20T20:30:16.495540Z",
+      "from_currency": "ADA",
+      "to_currency": "USD",
+      "rate": 0.432856,
+      "timestamp": "2025-11-20T20:30:16.495540Z",
+      "source": "CoinGecko",
+      "meta": {
+        "request_ms": 384,
+        "status_code": 200
+      }
+    },
+    {
+      "id": "DOT_USD_2025-11-20T20:30:16.496293Z",
+      "from_currency": "DOT",
+      "to_currency": "USD",
+      "rate": 2.54,
+      "timestamp": "2025-11-20T20:30:16.496293Z",
+      "source": "CoinGecko",
+      "meta": {
+        "request_ms": 384,
+        "status_code": 200
+      }
+    }
+  ]
+}
