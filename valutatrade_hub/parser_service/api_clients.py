@@ -167,18 +167,33 @@ class ExchangeRateApiClient(BaseApiClient):
         response_data = self._make_request(url)
 
         # Проверяем результат
-        if response_data.get("result") != "success":
+        result = response_data.get("result")
+        if result != "success":
+            error_type = response_data.get("error-type", "unknown")
+            error_info = response_data.get("error-info", "")
             raise ApiRequestError(
-                "ExchangeRate-API вернул ошибку: "
-                f"{response_data.get('error-type', 'unknown')}"
+                f"ExchangeRate-API вернул ошибку: {error_type}. "
+                f"{error_info if error_info else 'Проверьте API ключ.'}"
             )
 
         # Извлекаем курсы
-        rates_data = response_data.get("rates", {})
+        # ExchangeRate-API v6 использует 'conversion_rates', старые версии - 'rates'
+        rates_data = response_data.get("conversion_rates") or response_data.get("rates", {})
 
         if not rates_data:
+            # Проверяем структуру ответа для отладки
+            from valutatrade_hub.logging_config import get_logger
+            logger = get_logger(__name__)
+            response_keys = list(response_data.keys())
+            logger.error(
+                f"ExchangeRate-API вернул пустой rates. "
+                f"Response keys: {response_keys}, "
+                f"Response data: {response_data}"
+            )
             raise ApiRequestError(
-                "ExchangeRate-API вернул пустой список курсов"
+                f"ExchangeRate-API вернул пустой список курсов. "
+                f"Ответ содержит ключи: {response_keys}. "
+                f"Проверьте API ключ и тарифный план."
             )
 
         # Преобразуем в стандартный формат
@@ -191,6 +206,37 @@ class ExchangeRateApiClient(BaseApiClient):
             if fiat_code in rates_data:
                 pair_key = f"{fiat_code}_{config.BASE_CURRENCY}"
                 rates[pair_key] = float(rates_data[fiat_code])
+
+        # Если не нашли ни одного курса из списка, но rates_data не пустой,
+        # пробуем взять популярные валюты
+        if not rates and rates_data:
+            from valutatrade_hub.logging_config import get_logger
+            logger = get_logger(__name__)
+            available_currencies = list(rates_data.keys())[:10]
+            logger.warning(
+                f"Не найдено валют из FIAT_CURRENCIES в ответе API. "
+                f"Доступные валюты (первые 10): {available_currencies}"
+            )
+            # Пробуем взять хотя бы несколько популярных валют
+            common_currencies = ["EUR", "GBP", "RUB", "JPY", "CHF", "CNY", "CAD", "AUD"]
+            for curr in common_currencies:
+                if curr in rates_data and curr != config.BASE_CURRENCY:
+                    pair_key = f"{curr}_{config.BASE_CURRENCY}"
+                    rates[pair_key] = float(rates_data[curr])
+                    logger.info(
+                        f"Добавлен курс {pair_key} = {rates[pair_key]} "
+                        f"(не в списке FIAT_CURRENCIES)"
+                    )
+
+        # Если rates всё ещё пустой, значит проблема серьёзная
+        if not rates:
+            from valutatrade_hub.logging_config import get_logger
+            logger = get_logger(__name__)
+            logger.error(
+                f"Не удалось извлечь ни одного курса. "
+                f"rates_data содержит {len(rates_data)} записей, "
+                f"но ни одна не подошла."
+            )
 
         return rates
 

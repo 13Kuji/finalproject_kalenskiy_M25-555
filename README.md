@@ -130,6 +130,10 @@ poetry run project sell --currency BTC --amount 0.01
 poetry run project get-rate --from USD --to BTC
 ```
 
+## Демонстрация работы приложения
+показан полный цикл: register → login → buy/sell → show-portfolio → get-rate; отдельно — update-rates и show-rates, демонстрация обработки ошибок (например, недостаточно средств/неизвестная валюта).
+[![asciicast](https://asciinema.org/a/kpckt3hLzGvqNZiMz4AayunSH.svg)](https://asciinema.org/a/kpckt3hLzGvqNZiMz4AayunSH)
+
 #### Обновление курсов (Parser Service)
 
 ```bash
@@ -154,7 +158,7 @@ poetry run project show-rates --currency BTC
 
 ## Настройка Parser Service
 
-### Получение API ключей
+### Получение и установка API ключей
 
 #### ExchangeRate-API (для фиатных валют)
 
@@ -175,6 +179,8 @@ source ~/.zshrc
 
 - **Бесплатный доступ**: Работает без ключа, но с ограничениями по частоте запросов
 - **Платный доступ** (опционально): Зарегистрируйтесь на https://www.coingecko.com/en/api для получения ключа
+
+**Примечание**: Без ExchangeRate-API ключа можно работать только с криптовалютами.
 
 ### Кэш курсов и TTL
 
